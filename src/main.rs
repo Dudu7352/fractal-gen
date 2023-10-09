@@ -73,9 +73,9 @@ fn main() {
         } else {
             (size / threads) * (i + 1)
         };
-        th.push(thread::spawn(move || {
+        th.push(thread::spawn(move || 
             calculate_part(i, size, size / 2, (size / threads) * i, end, scale)
-        }))
+        ))
     }
 
     for t in th {
