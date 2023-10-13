@@ -24,11 +24,6 @@ fn main() {
         println!("Zoom cannot be equal to zero!");
         return;
     }
-    let size: usize = input(&stdout, &stdin, "Image width and height: ");
-    let offset_x: f64 = input(&stdout, &stdin, "X offset: ");
-    let offset_y: f64 = input(&stdout, &stdin, "Y offset: ");
-    let scale: f64 = zoom as f64 * size as f64;
-    let threads: usize = input(&stdout, &stdin, "Number of worker threads: ");
     let frac: FractalType = match input::<String>(&stdout, &stdin, "Fractal [mandelbrot/julia]").as_str() {
         "mandelbrot" => FractalType::Mandelbrot,
         "julia" => {
@@ -39,8 +34,13 @@ fn main() {
         _ => panic!("This type of fractal is not supported!")
     };
 
+    let offset_x: f64 = input(&stdout, &stdin, "X offset: ");
+    let offset_y: f64 = input(&stdout, &stdin, "Y offset: ");
+    let size: usize = input(&stdout, &stdin, "Image width and height: ");
+    let threads: usize = input(&stdout, &stdin, "Number of worker threads: ");
+    
     let options = FractalOptions::new(
-        scale,
+        zoom as f64 * size as f64,
         size,
         size/2,
         Complex::new(offset_x, offset_y),
