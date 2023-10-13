@@ -1,10 +1,10 @@
 # Fractal Generator
 
-Fractal generator is a cmd tool written in Rust programming language capable of creating variable size images of julia sets and the mandelbrot set itself
+Fractal generator is a cmd tool written in the Rust programming language, capable of generating variable size images of Julia sets and the Jandelbrot set itself.
 
 ## Julia sets
 
-In order to create Julia set write `julia` when program asks You for the fractal type. After that You will be prompted to input julia constant, which is a complex number.
+In order to create a Julia set, type `julia` when the program asks You for the fractal type. You will then be asked to enter the Julia constant, which is a complex number.
 
 <img src="example_julia.png">
 
@@ -12,7 +12,7 @@ In order to create Julia set write `julia` when program asks You for the fractal
 
 ## Mandelbrot set
 
-In order to create Mandelbrot set write `mandelbrot` when program asks You for the fractal type. For the best picture of the set, I recommend setting x offset to `-0.5`
+In order to create a Mandelbrot set, type `mandelbrot` when the program asks You for the fractal type. To get the best image of the set, I recommend to set the x_offset to `-0.5`
 
 <img src="example_mandelbrot.png">
 
