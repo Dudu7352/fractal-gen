@@ -27,11 +27,11 @@ impl FractalOptions {
     }
 
     pub fn get_cx(&self, x: f64) -> f64 {
-        (x - self.center as f64 * 1.5) / self.scale + self.offset.re
+        (x - self.center as f64) / self.scale + self.offset.re
     }
 
     pub fn get_cy(&self, y: f64) -> f64 {
-        (y - self.center as f64 * 1.5) / self.scale + self.offset.im
+        (y - self.center as f64) / self.scale + self.offset.im
     }
 }
 
