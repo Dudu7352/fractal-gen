@@ -86,8 +86,9 @@ fn main() {
         scale,
         size,
         size/2,
-
-    )
+        Complex::new(offset_x, offset_y),
+        frac
+    );
 
     let timer = Instant::now();
     let mut pixels = Vec::with_capacity(size * size);
@@ -99,9 +100,15 @@ fn main() {
         } else {
             (size / threads) * (i + 1)
         };
-        let c = frac.clone();
+        let o = options.clone();
         th.push(thread::spawn(move || 
-            calculate_part(i, size, size / 2, (size / threads) * i, end, scale, offset_x, offset_y, c)
+            calculate_part(
+                i, 
+                o, 
+                Range {
+                    start: (size / threads) * i,
+                    end
+                })
         ))
     }
 
