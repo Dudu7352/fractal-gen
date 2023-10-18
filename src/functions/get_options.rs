@@ -13,7 +13,7 @@ pub fn get_options() -> Result<(FractalOptions, usize), ()> {
         println!("Zoom cannot be equal to zero!");
         return Err(());
     }
-    let frac: FractalType = match input::<String>(&s_out, &s_in, "Fractal [mandelbrot/julia]").as_str() {
+    let frac: FractalType = match input::<String>(&s_out, &s_in, "Fractal [mandelbrot/julia]: ").as_str() {
         "mandelbrot" => FractalType::Mandelbrot,
         "julia" => {
             FractalType::Julia(
