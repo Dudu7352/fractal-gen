@@ -12,7 +12,13 @@ use crate::functions::calculate_part::calculate_part;
 use crate::options::FractalType;
 
 fn main() {
-    let (options, threads) = get_options().unwrap();
+    let (options, threads) = match get_options() {
+        Ok((options, threads)) => (options, threads),
+        Err(err) => {
+            eprintln!("Program encountered error:\n{}", err);
+            return ();
+        }
+    };
 
     let timer = Instant::now();
     let mut pixels = Vec::with_capacity(options.resolution * options.resolution);

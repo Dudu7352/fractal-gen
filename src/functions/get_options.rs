@@ -4,14 +4,13 @@ use crate::FractalOptions;
 use crate::FractalType;
 use super::input::input;
 
-pub fn get_options() -> Result<(FractalOptions, usize), ()> {
+pub fn get_options() -> Result<(FractalOptions, usize), String> {
    let s_in = stdin();
    let s_out = stdout();
 
     let zoom: f64 = input(&s_out, &s_in, "Zoom: ");
     if zoom == 0f64 {
-        println!("Zoom cannot be equal to zero!");
-        return Err(());
+        return Err(String::from("Zoom cannot be equal to zero!"));
     }
     let frac: FractalType = match input::<String>(&s_out, &s_in, "Fractal [mandelbrot/julia]: ").as_str() {
         "mandelbrot" => FractalType::Mandelbrot,
@@ -20,7 +19,7 @@ pub fn get_options() -> Result<(FractalOptions, usize), ()> {
                 input(&s_out, &s_in, "Input julia constant: ")
             )
         },
-        _ => panic!("This type of fractal is not supported!")
+        _ => return Err(String::from("This type of fractal is not supported!"))
     };
 
     let offset_x: f64 = input(&s_out, &s_in, "X offset: ");
