@@ -1,6 +1,6 @@
 # Fractal Generator
 
-Fractal generator is a cmd tool written in the Rust programming language, capable of generating variable size images of Julia sets and the Jandelbrot set itself.
+Fractal generator is a cmd tool written in the Rust programming language, capable of generating variable size images of Julia sets and the Mandelbrot set itself.
 
 ## Julia sets
 
