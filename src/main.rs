@@ -1,3 +1,4 @@
+pub mod frac_type;
 pub mod options;
 pub mod functions;
 
@@ -9,7 +10,6 @@ use functions::get_options::get_options;
 use options::{FractalOptions, Range};
 
 use crate::functions::calculate_part::calculate_part;
-use crate::options::FractalType;
 
 fn main() {
     let (options, threads) = match get_options() {

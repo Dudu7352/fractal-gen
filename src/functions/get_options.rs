@@ -1,7 +1,7 @@
 use std::io::{stdin, stdout};
 use num::Complex;
 use crate::FractalOptions;
-use crate::FractalType;
+use crate::frac_type::FracType;
 use super::input::input;
 
 pub fn get_options() -> Result<(FractalOptions, usize), String> {
@@ -12,12 +12,15 @@ pub fn get_options() -> Result<(FractalOptions, usize), String> {
     if zoom == 0f64 {
         return Err(String::from("Zoom cannot be equal to zero!"));
     }
-    let frac: FractalType = match input::<String>(&s_out, &s_in, "Fractal [mandelbrot/julia]: ").as_str() {
-        "mandelbrot" => FractalType::Mandelbrot,
+    let frac: FracType = match input::<String>(&s_out, &s_in, "Fractal [mandelbrot/julia/mbrot]: ").as_str() {
+        "mandelbrot" => FracType::Mandelbrot,
         "julia" => {
-            FractalType::Julia(
-                input(&s_out, &s_in, "Input julia constant: ")
-            )
+            FracType::Julia{
+                c: input(&s_out, &s_in, "Input julia constant: ")
+            }
+        },
+        "mbrot" => FracType::Mbrot {
+            pow: input(&s_out, &s_in, "Input power: ")
         },
         _ => return Err(String::from("This type of fractal is not supported!"))
     };

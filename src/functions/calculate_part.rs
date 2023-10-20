@@ -1,6 +1,6 @@
 use num::Complex;
 
-use crate::{options::{FractalOptions, Range, FractalType}, functions::value_calc::get_finite_u8};
+use crate::options::{FractalOptions, Range};
 
 pub fn calculate_part(
     id: usize,
@@ -13,13 +13,8 @@ pub fn calculate_part(
 
         for x in 0..options.resolution {
             let cx = options.get_cx(x as f64);
-
-            let (z, cst) = match options.fractal {
-                FractalType::Mandelbrot => (Complex::new(0f64, 0f64), Complex::new(cx, cy)),
-                FractalType::Julia(constant) => (Complex::new(cx, cy), constant)
-            };
-
-            v.push(get_finite_u8(z, cst));
+            
+            v.push(options.fractal.get_val(Complex::new(cx, cy)));
         }
     }
     println!("Task on Thread {id} Complete");
