@@ -4,8 +4,8 @@ pub mod functions;
 
 use std::time::Instant;
 use std:: thread;
-
-use image::ImageBuffer;
+use image::Luma;
+use image::{ImageBuffer, Rgb, RgbImage, Pixel};
 use functions::get_options::get_options;
 use options::{FractalOptions, Range};
 
@@ -21,7 +21,7 @@ fn main() {
     };
 
     let timer = Instant::now();
-    let mut pixels = Vec::with_capacity(options.resolution * options.resolution);
+    let mut pixels: Vec<u8> = Vec::with_capacity(options.resolution * options.resolution);
     let mut th = Vec::with_capacity(threads);
 
     for i in 0..threads {
@@ -46,8 +46,7 @@ fn main() {
         pixels.append(&mut t.join().unwrap());
     }
 
-    let img: ImageBuffer<image::Luma<u8>, Vec<u8>> =
-        ImageBuffer::from_raw(options.resolution as u32, options.resolution as u32, pixels).unwrap();
+    let img: ImageBuffer<Rgb<u8>, Vec<u8>> = ImageBuffer::from_raw(options.resolution as u32, options.resolution as u32, pixels).unwrap();
 
     let _ = img.save("frac.png");
     println!(
