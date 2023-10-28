@@ -1,8 +1,8 @@
 use std::io::{stdin, stdout};
+use frac_lib::options::{fractal_options::FractalOptions, frac_type::FracType};
 use num::Complex;
-use crate::FractalOptions;
-use crate::frac_type::FracType;
-use super::input::input;
+
+use crate::input::input;
 
 pub fn get_options() -> Result<(FractalOptions, usize), String> {
    let s_in = stdin();
@@ -19,9 +19,6 @@ pub fn get_options() -> Result<(FractalOptions, usize), String> {
                 c: input(&s_out, &s_in, "Input julia constant: ")
             }
         },
-        "mbrot" => FracType::Mbrot {
-            pow: input(&s_out, &s_in, "Input power: ")
-        },
         _ => return Err(String::from("This type of fractal is not supported!"))
     };
 
@@ -35,6 +32,7 @@ pub fn get_options() -> Result<(FractalOptions, usize), String> {
         size,
         size/2,
         Complex::new(offset_x, offset_y),
-        frac
+        frac,
+        true
     ), threads))
 } 

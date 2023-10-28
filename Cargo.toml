@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 num = "*"
 image = "*"
+frac-lib = { git = "https://github.com/Dudu7352/frac-gen", branch = "release"}
+tokio = { version = "1.33.0", features = ["rt-multi-thread", "macros"]}
